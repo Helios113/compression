@@ -1,0 +1,653 @@
+/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'base': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+[92mINFO [0m:      Starting Flower simulation, config: num_rounds=10, no round_timeout
+model:
+  _target_: torchvision.models.resnet18
+  num_classes: ${foo}
+strategy:
+  _target_: flwr.server.strategy.FedAvg
+  fraction_fit: 1.0e-05
+  min_fit_clients: ${num_clients_per_round_fit}
+  fraction_evaluate: 1.0e-05
+  min_evaluate_clients: ${num_clients_per_round_eval}
+  min_available_clients: ${num_clients}
+  on_fit_config_fn:
+    _target_: server.get_on_fit_config
+    config: ${config_fit}
+foo: 10
+num_rounds: 10
+num_clients: 100
+batch_size: 20
+num_classes: 10
+num_clients_per_round_fit: 10
+num_clients_per_round_eval: 25
+config_fit:
+  lr: 0.01
+  momentum: 0.9
+  local_epochs: 1
+
+[2024-08-14 18:15:57,631][flwr][INFO] - Starting Flower simulation, config: num_rounds=10, no round_timeout
+2024-08-14 18:16:00,280	INFO worker.py:1752 -- Started a local Ray instance.
+[92mINFO [0m:      Flower VCE: Ray initialized with resources: {'object_store_memory': 76998688358.0, 'accelerator_type:G': 1.0, 'GPU': 1.0, 'memory': 169663606170.0, 'node:__internal_head__': 1.0, 'node:128.232.115.66': 1.0, 'CPU': 56.0}
+[2024-08-14 18:16:06,372][flwr][INFO] - Flower VCE: Ray initialized with resources: {'object_store_memory': 76998688358.0, 'accelerator_type:G': 1.0, 'GPU': 1.0, 'memory': 169663606170.0, 'node:__internal_head__': 1.0, 'node:128.232.115.66': 1.0, 'CPU': 56.0}
+[92mINFO [0m:      Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-14 18:16:06,373][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[92mINFO [0m:      Flower VCE: Resources for each Virtual Client: {'num_cpus': 2, 'num_gpus': 0.0}
+[2024-08-14 18:16:06,373][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 2, 'num_gpus': 0.0}
+[92mINFO [0m:      Flower VCE: Creating VirtualClientEngineActorPool with 28 actors
+[2024-08-14 18:16:06,402][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 28 actors
+[92mINFO [0m:      [INIT]
+[2024-08-14 18:16:06,403][flwr][INFO] - [INIT]
+[92mINFO [0m:      Requesting initial parameters from one random client
+[2024-08-14 18:16:06,403][flwr][INFO] - Requesting initial parameters from one random client
+[33m(raylet)[0m [2024-08-14 18:16:10,195 E 3705411 3705446] (raylet) file_system_monitor.cc:111: /tmp/ray/session_2024-08-14_18-15-57_769194_3704882 is over 95% full, available space: 13819064320; capacity: 2015100878848. Object creation will fail if spilling is required.
+[36m(ClientAppActor pid=3708841)[0m [93mWARNING [0m:   DEPRECATED FEATURE: `client_fn` now expects a signature `def client_fn(context: Context)`.The provided `client_fn` has signature: {'cid': <Parameter "cid: str">}. You can import the `Context` like this: `from flwr.common import Context`
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m             This is a deprecated feature. It will be removed
+[36m(ClientAppActor pid=3708841)[0m             entirely in future versions of Flower.
+[36m(ClientAppActor pid=3708841)[0m         
+[91mERROR [0m:     Traceback (most recent call last):
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+    return client.get_parameters(get_parameters_ins)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+[2024-08-14 18:16:13,998][flwr][ERROR] - Traceback (most recent call last):
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+    return client.get_parameters(get_parameters_ins)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+
+[2024-08-14 18:16:13,999][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+    return client.get_parameters(get_parameters_ins)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+[91mERROR [0m:     [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+    return client.get_parameters(get_parameters_ins)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+[91mERROR [0m:     [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+    return client.get_parameters(get_parameters_ins)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+[2024-08-14 18:16:13,999][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+    return client.get_parameters(get_parameters_ins)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+[91mERROR [0m:     Traceback (most recent call last):
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/app.py", line 339, in start_simulation
+    hist = run_fl(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 490, in run_fl
+    hist, elapsed_time = server.fit(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 93, in fit
+    self.parameters = self._get_initial_parameters(server_round=0, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 282, in _get_initial_parameters
+    get_parameters_res = random_client.get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 168, in get_parameters
+    message_out = self._submit_job(message, timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 108, in _submit_job
+    raise ex
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+    return client.get_parameters(get_parameters_ins)
+[2024-08-14 18:16:14,004][flwr][ERROR] - Traceback (most recent call last):
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/app.py", line 339, in start_simulation
+    hist = run_fl(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 490, in run_fl
+    hist, elapsed_time = server.fit(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 93, in fit
+    self.parameters = self._get_initial_parameters(server_round=0, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 282, in _get_initial_parameters
+    get_parameters_res = random_client.get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 168, in get_parameters
+    message_out = self._submit_job(message, timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 108, in _submit_job
+    raise ex
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+
+    return client.get_parameters(get_parameters_ins)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+
+[91mERROR [0m:     Your simulation crashed :(. This could be because of several reasons. The most common are: 
+	 > Sometimes, issues in the simulation code itself can cause crashes. It's always a good idea to double-check your code for any potential bugs or inconsistencies that might be contributing to the problem. For example: 
+		 - You might be using a class attribute in your clients that hasn't been defined.
+		 - There could be an incorrect method call to a 3rd party library (e.g., PyTorch).
+		 - The return types of methods in your clients/strategies might be incorrect.
+	 > Your system couldn't fit a single VirtualClient: try lowering `client_resources`.
+	 > All the actors in your pool crashed. This could be because: 
+		 - You clients hit an out-of-memory (OOM) error and actors couldn't recover from it. Try launching your simulation with more generous `client_resources` setting (i.e. it seems {'num_cpus': 2, 'num_gpus': 0.0} is not enough for your run). Use fewer concurrent actors. 
+		 - You were running a multi-node simulation and all worker nodes disconnected. The head node might still be alive but cannot accommodate any actor with resources: {'num_cpus': 2, 'num_gpus': 0.0}.
+Take a look at the Flower simulation examples for guidance <https://flower.ai/docs/framework/how-to-run-simulations.html>.
+[2024-08-14 18:16:14,004][flwr][ERROR] - Your simulation crashed :(. This could be because of several reasons. The most common are: 
+	 > Sometimes, issues in the simulation code itself can cause crashes. It's always a good idea to double-check your code for any potential bugs or inconsistencies that might be contributing to the problem. For example: 
+		 - You might be using a class attribute in your clients that hasn't been defined.
+		 - There could be an incorrect method call to a 3rd party library (e.g., PyTorch).
+		 - The return types of methods in your clients/strategies might be incorrect.
+	 > Your system couldn't fit a single VirtualClient: try lowering `client_resources`.
+	 > All the actors in your pool crashed. This could be because: 
+		 - You clients hit an out-of-memory (OOM) error and actors couldn't recover from it. Try launching your simulation with more generous `client_resources` setting (i.e. it seems {'num_cpus': 2, 'num_gpus': 0.0} is not enough for your run). Use fewer concurrent actors. 
+		 - You were running a multi-node simulation and all worker nodes disconnected. The head node might still be alive but cannot accommodate any actor with resources: {'num_cpus': 2, 'num_gpus': 0.0}.
+Take a look at the Flower simulation examples for guidance <https://flower.ai/docs/framework/how-to-run-simulations.html>.
+[36m(ClientAppActor pid=3708841)[0m tensor([[[[ 5.1561e-03, -1.8839e-02, -9.7455e-03,  ...,  1.3620e-02,
+[36m(ClientAppActor pid=3708841)[0m            -8.1859e-04,  3.4136e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.9205e-02, -1.9759e-02, -2.5853e-02,  ...,  1.9456e-02,
+[36m(ClientAppActor pid=3708841)[0m            -4.0098e-02,  7.4948e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 2.5334e-02,  7.1561e-03, -3.1835e-02,  ..., -1.8956e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.6069e-02,  1.9198e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [-4.8914e-02, -2.2325e-02, -1.6637e-02,  ...,  6.2473e-03,
+[36m(ClientAppActor pid=3708841)[0m             3.3032e-03,  8.6550e-03],
+[36m(ClientAppActor pid=3708841)[0m           [-2.2853e-02,  5.1218e-02, -1.7173e-02,  ..., -9.8204e-03,
+[36m(ClientAppActor pid=3708841)[0m             1.2730e-02, -1.3202e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-1.4692e-02, -3.5127e-02,  5.8478e-03,  ...,  3.1492e-02,
+[36m(ClientAppActor pid=3708841)[0m             5.4781e-03,  2.9534e-02]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[-3.3268e-02,  1.4231e-02,  1.0087e-02,  ..., -5.8710e-03,
+[36m(ClientAppActor pid=3708841)[0m            -3.4028e-02, -2.7204e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 9.5811e-03, -1.9818e-02, -1.0496e-02,  ..., -1.8194e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.1577e-02,  1.6875e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-3.5568e-02, -5.6096e-02, -4.8805e-03,  ..., -1.7877e-03,
+[36m(ClientAppActor pid=3708841)[0m             1.7834e-02, -2.2359e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [-1.3724e-02, -9.4701e-03, -2.2648e-03,  ..., -1.0168e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.8536e-02,  1.3585e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-1.5165e-02, -3.7040e-02,  9.9779e-03,  ..., -1.8146e-02,
+[36m(ClientAppActor pid=3708841)[0m            -6.7472e-03, -1.4823e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 7.0548e-03, -3.1411e-02, -1.5651e-02,  ...,  1.2562e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.6854e-02, -6.2169e-03]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[-2.7886e-02,  1.8786e-02,  2.8567e-02,  ..., -1.9342e-02,
+[36m(ClientAppActor pid=3708841)[0m             6.1363e-02, -4.5603e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 4.3144e-02, -2.5872e-02, -3.3638e-02,  ..., -6.5139e-03,
+[36m(ClientAppActor pid=3708841)[0m             4.0290e-03, -4.4517e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.8666e-02,  1.9781e-02, -3.2650e-03,  ...,  3.6136e-02,
+[36m(ClientAppActor pid=3708841)[0m            -3.1933e-02, -3.8098e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 1.1561e-02,  2.2582e-02,  2.6693e-02,  ...,  2.6749e-02,
+[36m(ClientAppActor pid=3708841)[0m            -2.2893e-02,  2.2745e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.8723e-02, -1.5385e-02, -4.0719e-02,  ...,  4.6578e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.6424e-02,  1.7957e-03],
+[36m(ClientAppActor pid=3708841)[0m           [-4.1465e-02, -6.8205e-03,  3.1351e-02,  ..., -2.0303e-02,
+[36m(ClientAppActor pid=3708841)[0m             2.1123e-02,  2.6683e-02]]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m         [[[-1.2756e-02, -3.1427e-02,  4.0502e-02,  ..., -3.4848e-02,
+[36m(ClientAppActor pid=3708841)[0m            -9.8269e-03, -1.7972e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-3.1590e-03,  2.2548e-02, -2.3091e-02,  ..., -1.1914e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.6499e-02, -3.4633e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.1244e-02,  9.7650e-03,  2.4004e-02,  ...,  4.0424e-02,
+[36m(ClientAppActor pid=3708841)[0m             4.4010e-02, -2.5438e-03],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 1.3235e-03, -3.8097e-03, -1.2368e-02,  ...,  1.0784e-02,
+[36m(ClientAppActor pid=3708841)[0m             3.4409e-02, -1.5972e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 8.9485e-03, -1.6202e-02,  1.2792e-02,  ..., -2.7439e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.1989e-02,  3.7513e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.0940e-02,  6.2740e-03,  1.4506e-02,  ...,  2.3091e-02,
+[36m(ClientAppActor pid=3708841)[0m             9.5306e-03, -3.3255e-02]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[ 1.5531e-02, -2.7625e-02, -2.1150e-03,  ...,  9.9955e-03,
+[36m(ClientAppActor pid=3708841)[0m             7.6168e-03,  8.5699e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 2.0753e-02, -3.4951e-02,  6.0064e-02,  ..., -3.8509e-02,
+[36m(ClientAppActor pid=3708841)[0m            -6.5675e-02,  7.3706e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.8814e-03, -1.4208e-02,  3.8537e-03,  ..., -8.8286e-03,
+[36m(ClientAppActor pid=3708841)[0m            -9.7473e-03,  2.1772e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 5.5751e-02,  4.0999e-03, -1.5273e-02,  ...,  7.4856e-03,
+[36m(ClientAppActor pid=3708841)[0m            -4.3128e-02,  2.7870e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 5.2180e-02,  1.0292e-02,  4.2939e-04,  ...,  6.8509e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.4869e-02,  1.6729e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.2839e-03,  3.0662e-03,  4.2693e-02,  ...,  2.0646e-02,
+[36m(ClientAppActor pid=3708841)[0m             3.7475e-03, -4.2884e-02]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[-6.5194e-02,  1.2929e-02,  9.1839e-03,  ..., -4.0235e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.8709e-02, -2.1747e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-4.5938e-02, -9.1175e-03, -6.9180e-03,  ...,  1.2652e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.9994e-02,  2.5956e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 4.9094e-02, -4.0110e-04,  9.8371e-03,  ..., -3.6260e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.7291e-02, -2.2775e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [-3.9816e-02, -1.8481e-02,  1.4313e-02,  ...,  2.7410e-03,
+[36m(ClientAppActor pid=3708841)[0m             3.2048e-02,  2.7472e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-1.7744e-02, -3.3810e-02,  4.7073e-03,  ...,  3.6335e-02,
+[36m(ClientAppActor pid=3708841)[0m             3.8823e-02, -4.4535e-03],
+[36m(ClientAppActor pid=3708841)[0m           [-3.6907e-02, -6.8823e-02, -1.7446e-03,  ...,  6.0556e-03,
+[36m(ClientAppActor pid=3708841)[0m            -6.8842e-03, -7.2131e-03]]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m         [[[-4.9359e-02, -4.9072e-03,  3.7078e-02,  ..., -1.1792e-02,
+[36m(ClientAppActor pid=3708841)[0m            -4.4197e-03,  2.0478e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.2373e-02,  3.1746e-03,  2.4237e-02,  ...,  4.3467e-02,
+[36m(ClientAppActor pid=3708841)[0m             2.0368e-02,  3.0412e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.6281e-02, -9.2038e-03, -4.2885e-02,  ..., -5.2416e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.9960e-02, -2.3211e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 2.6454e-02, -3.2783e-02,  1.6521e-02,  ..., -6.4782e-03,
+[36m(ClientAppActor pid=3708841)[0m            -2.6303e-02,  2.0682e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.6358e-02,  2.4137e-02,  2.3272e-03,  ..., -2.4627e-02,
+[36m(ClientAppActor pid=3708841)[0m            -3.4791e-03,  1.3872e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 8.3597e-03, -1.1297e-02, -5.2433e-02,  ..., -1.8537e-02,
+[36m(ClientAppActor pid=3708841)[0m            -9.5307e-03,  3.9696e-02]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[-1.7471e-02, -1.4898e-02,  1.9777e-02,  ...,  1.3188e-02,
+[36m(ClientAppActor pid=3708841)[0m             4.6068e-02, -1.9541e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-1.8466e-02,  4.0767e-03,  3.3019e-02,  ...,  1.3705e-02,
+[36m(ClientAppActor pid=3708841)[0m             2.3702e-02,  5.9428e-03],
+[36m(ClientAppActor pid=3708841)[0m           [-4.4954e-03, -7.0809e-03,  2.8744e-03,  ..., -2.5257e-02,
+[36m(ClientAppActor pid=3708841)[0m             4.2784e-03, -2.8019e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [-2.7373e-02, -4.8351e-02, -6.9855e-03,  ...,  1.6899e-02,
+[36m(ClientAppActor pid=3708841)[0m            -2.2660e-02,  4.5263e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-2.5198e-02, -3.8259e-02, -1.1593e-02,  ...,  7.0994e-03,
+[36m(ClientAppActor pid=3708841)[0m             1.1975e-02, -2.3128e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 9.0701e-03, -5.6678e-02,  7.5503e-03,  ..., -5.2446e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.0742e-02, -2.6652e-03]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[-1.1139e-02,  3.1967e-02,  1.8219e-02,  ..., -5.0177e-03,
+[36m(ClientAppActor pid=3708841)[0m             2.2390e-02, -3.6296e-04],
+[36m(ClientAppActor pid=3708841)[0m           [-2.5219e-02, -2.2291e-02, -1.1314e-04,  ...,  1.4833e-02,
+[36m(ClientAppActor pid=3708841)[0m            -7.5219e-03, -3.1226e-04],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.5537e-02, -1.1454e-02,  2.6613e-02,  ..., -4.0646e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.3672e-02, -2.4858e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [-2.8657e-02, -2.7655e-03,  7.3314e-03,  ..., -1.2844e-02,
+[36m(ClientAppActor pid=3708841)[0m             3.7064e-02,  3.5431e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-6.7277e-02, -2.0738e-02,  5.3804e-03,  ...,  2.8770e-02,
+[36m(ClientAppActor pid=3708841)[0m            -4.1830e-02, -2.8202e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 3.3213e-02,  1.6459e-02,  4.0760e-02,  ..., -3.1291e-02,
+[36m(ClientAppActor pid=3708841)[0m             8.2047e-03,  2.1192e-02]]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m         ...,
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m         [[[-2.0085e-02,  1.7511e-02, -2.3276e-02,  ..., -5.4663e-03,
+[36m(ClientAppActor pid=3708841)[0m             1.1804e-02, -2.1095e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-4.3379e-02, -1.5531e-02, -3.3435e-02,  ..., -3.1418e-02,
+[36m(ClientAppActor pid=3708841)[0m            -2.9020e-02, -1.7609e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-3.6309e-02,  2.4530e-02, -2.5068e-02,  ...,  8.1016e-03,
+[36m(ClientAppActor pid=3708841)[0m             5.9565e-02,  2.5247e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 2.3870e-02, -3.7832e-02,  1.9650e-02,  ...,  9.3869e-03,
+[36m(ClientAppActor pid=3708841)[0m            -1.7564e-02, -9.1911e-03],
+[36m(ClientAppActor pid=3708841)[0m           [-2.4280e-02,  2.8201e-02,  2.2813e-02,  ..., -1.8934e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.9725e-03, -3.9344e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 3.1636e-03, -6.5409e-02,  4.1512e-02,  ...,  4.0313e-02,
+[36m(ClientAppActor pid=3708841)[0m            -9.0242e-03, -1.0232e-02]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[ 1.6511e-03, -3.4447e-02, -4.3430e-02,  ...,  1.8249e-02,
+[36m(ClientAppActor pid=3708841)[0m             2.7933e-02,  2.2132e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.0130e-02,  3.1485e-03,  4.5270e-02,  ..., -7.0272e-03,
+[36m(ClientAppActor pid=3708841)[0m             6.4669e-04,  2.7011e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 2.3451e-02, -1.4042e-02,  3.6386e-02,  ..., -2.8552e-02,
+[36m(ClientAppActor pid=3708841)[0m             7.1178e-03, -2.1425e-03],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 3.3202e-02,  3.4877e-03,  2.9220e-03,  ..., -1.6688e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.2882e-02,  6.9116e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 2.2776e-02,  3.0685e-02, -4.5448e-02,  ...,  5.5628e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.2845e-02, -1.8060e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-3.0295e-02, -4.8399e-02, -2.9514e-03,  ...,  9.5455e-03,
+[36m(ClientAppActor pid=3708841)[0m             6.7006e-03,  7.0680e-03]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[ 2.3633e-02, -3.2193e-03,  3.4948e-02,  ...,  5.9416e-03,
+[36m(ClientAppActor pid=3708841)[0m             1.6004e-02,  9.6778e-03],
+[36m(ClientAppActor pid=3708841)[0m           [-5.2265e-02, -4.1628e-03,  1.6181e-02,  ..., -2.6398e-03,
+[36m(ClientAppActor pid=3708841)[0m             2.2729e-02,  3.3447e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-3.5228e-03,  4.4987e-03, -4.1443e-02,  ...,  8.8319e-03,
+[36m(ClientAppActor pid=3708841)[0m            -1.8689e-02,  8.0854e-03],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 3.6177e-02, -2.4737e-03,  2.7591e-02,  ...,  1.3198e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.2746e-02,  1.2137e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.3859e-02,  7.5131e-03, -4.0201e-03,  ...,  2.1110e-02,
+[36m(ClientAppActor pid=3708841)[0m             3.3036e-02, -1.6297e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-4.4485e-02, -2.2707e-02,  1.4571e-02,  ..., -6.5464e-03,
+[36m(ClientAppActor pid=3708841)[0m            -1.4776e-02, -2.4953e-02]]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m         [[[ 5.2426e-03, -1.4471e-02,  9.1599e-04,  ..., -2.5664e-04,
+[36m(ClientAppActor pid=3708841)[0m            -2.3705e-02, -7.5911e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 4.4956e-02, -2.9876e-02,  9.2030e-03,  ..., -3.5383e-02,
+[36m(ClientAppActor pid=3708841)[0m             8.5342e-03, -1.5440e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 7.0556e-03,  4.0062e-03,  2.7593e-02,  ..., -2.4261e-02,
+[36m(ClientAppActor pid=3708841)[0m            -5.3881e-02,  3.4708e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 1.9181e-02, -2.0548e-02,  6.2927e-02,  ...,  4.0781e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.3125e-02, -2.1651e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.8530e-02,  7.7256e-03,  1.8482e-02,  ...,  4.3828e-02,
+[36m(ClientAppActor pid=3708841)[0m            -2.4591e-02, -1.9802e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-2.0659e-02,  4.6061e-03,  2.4814e-02,  ...,  3.3828e-04,
+[36m(ClientAppActor pid=3708841)[0m             5.6202e-03, -4.3258e-02]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[ 1.0160e-02,  6.3801e-03, -2.5372e-02,  ..., -5.8497e-03,
+[36m(ClientAppActor pid=3708841)[0m             2.9129e-02, -3.4159e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.3062e-02, -2.7853e-02, -1.8492e-02,  ...,  5.2667e-02,
+[36m(ClientAppActor pid=3708841)[0m             2.0481e-02, -8.5420e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 3.8720e-03, -1.7666e-03,  8.1612e-03,  ..., -5.0395e-02,
+[36m(ClientAppActor pid=3708841)[0m            -1.5946e-02,  1.2640e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 3.9259e-02,  1.3325e-02,  2.9213e-03,  ..., -1.2198e-02,
+[36m(ClientAppActor pid=3708841)[0m            -9.8090e-03, -2.8359e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 3.9720e-04,  1.8572e-02, -9.0929e-03,  ..., -3.8896e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.1196e-02, -3.7651e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 9.9009e-03,  4.7593e-02,  1.4154e-02,  ...,  7.1246e-03,
+[36m(ClientAppActor pid=3708841)[0m            -1.9919e-02, -2.0671e-03]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[ 2.1294e-02, -9.6237e-03,  3.7055e-02,  ..., -3.0251e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.6086e-02, -9.1438e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 2.8849e-03,  2.9910e-03,  7.9151e-03,  ...,  1.9959e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.9151e-02, -9.7913e-04],
+[36m(ClientAppActor pid=3708841)[0m           [ 6.7513e-02, -3.0641e-02,  2.6912e-02,  ...,  8.9293e-03,
+[36m(ClientAppActor pid=3708841)[0m             2.9772e-04, -8.8256e-03],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 8.7469e-03, -2.2835e-02,  2.0059e-02,  ...,  3.9865e-03,
+[36m(ClientAppActor pid=3708841)[0m            -1.5577e-02, -4.4602e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 4.4537e-02, -2.4876e-02,  2.4272e-02,  ...,  5.3868e-03,
+[36m(ClientAppActor pid=3708841)[0m             2.3569e-02,  3.0696e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 2.8868e-02, -3.0730e-02,  4.1534e-02,  ..., -1.4315e-02,
+[36m(ClientAppActor pid=3708841)[0m             4.5416e-04,  2.0276e-02]]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m         [[[ 3.9705e-02, -3.3301e-02, -2.4155e-02,  ...,  3.5375e-03,
+[36m(ClientAppActor pid=3708841)[0m            -3.6462e-02, -4.0520e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.8458e-02, -1.1122e-02,  4.2747e-03,  ..., -1.3116e-02,
+[36m(ClientAppActor pid=3708841)[0m            -3.5430e-02,  1.8702e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-3.3016e-02,  2.4273e-02, -8.4589e-03,  ...,  3.8605e-02,
+[36m(ClientAppActor pid=3708841)[0m             1.6047e-02,  2.0406e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 3.5101e-02, -4.3850e-02,  4.2401e-02,  ...,  2.6383e-02,
+[36m(ClientAppActor pid=3708841)[0m             4.0230e-02, -4.6330e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 1.5016e-02, -3.8999e-02, -1.4363e-02,  ...,  4.9140e-02,
+[36m(ClientAppActor pid=3708841)[0m             3.2656e-03,  4.3891e-02],
+[36m(ClientAppActor pid=3708841)[0m           [ 2.9630e-03, -5.8505e-03,  3.0510e-03,  ..., -1.7679e-02,
+[36m(ClientAppActor pid=3708841)[0m            -4.2834e-02,  4.8004e-03]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[-2.4876e-02, -3.9486e-02,  2.1042e-02,  ...,  2.6905e-02,
+[36m(ClientAppActor pid=3708841)[0m             9.3471e-03, -1.0757e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-1.6300e-03,  4.9400e-02, -2.5580e-03,  ...,  1.9174e-02,
+[36m(ClientAppActor pid=3708841)[0m             8.7472e-05,  2.9758e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-2.8596e-02,  4.0384e-03,  3.9843e-02,  ..., -6.6707e-03,
+[36m(ClientAppActor pid=3708841)[0m            -2.7324e-02,  1.7652e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [ 9.2312e-04, -1.2679e-02, -6.8267e-03,  ...,  6.7222e-03,
+[36m(ClientAppActor pid=3708841)[0m             2.2889e-02, -6.0249e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 4.7749e-04, -1.4782e-02, -3.7763e-03,  ..., -3.1278e-02,
+[36m(ClientAppActor pid=3708841)[0m             2.4414e-02,  1.2596e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-3.0211e-02,  2.8544e-02, -5.4254e-03,  ..., -3.8256e-03,
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/app.py", line 339, in start_simulation
+    hist = run_fl(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 490, in run_fl
+    hist, elapsed_time = server.fit(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 93, in fit
+    self.parameters = self._get_initial_parameters(server_round=0, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 282, in _get_initial_parameters
+    get_parameters_res = random_client.get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 168, in get_parameters
+    message_out = self._submit_job(message, timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 108, in _submit_job
+    raise ex
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 120, in handle_legacy_message_from_msgtype
+    get_parameters_res = maybe_call_get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client.py", line 214, in maybe_call_get_parameters
+[36m(ClientAppActor pid=3708841)[0m             2.9911e-02, -1.2637e-03]],
+[36m(ClientAppActor pid=3708841)[0m 
+[36m(ClientAppActor pid=3708841)[0m          [[-1.6464e-03,  1.4911e-02,  2.9037e-03,  ...,  2.6340e-02,
+[36m(ClientAppActor pid=3708841)[0m            -4.9429e-03, -1.8934e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-9.8852e-03, -2.9106e-02,  4.0033e-02,  ..., -1.0368e-02,
+[36m(ClientAppActor pid=3708841)[0m             2.3238e-02, -1.8496e-02],
+[36m(ClientAppActor pid=3708841)[0m           [-1.5456e-02,  2.5575e-02,  3.7887e-03,  ...,  7.5228e-02,
+[36m(ClientAppActor pid=3708841)[0m             2.8342e-02,  4.3547e-02],
+[36m(ClientAppActor pid=3708841)[0m           ...,
+[36m(ClientAppActor pid=3708841)[0m           [-3.7835e-02, -6.1960e-03, -1.7772e-02,  ..., -7.9132e-03,
+[36m(ClientAppActor pid=3708841)[0m            -4.6174e-03, -1.1905e-04],
+[36m(ClientAppActor pid=3708841)[0m           [-1.4560e-02,  1.2524e-03,  2.5305e-02,  ...,  3.4909e-02,
+[36m(ClientAppActor pid=3708841)[0m            -4.0969e-02, -2.9878e-03],
+[36m(ClientAppActor pid=3708841)[0m           [ 4.0262e-02,  2.6235e-02, -1.2749e-02,  ..., -1.0485e-02,
+[36m(ClientAppActor pid=3708841)[0m             3.6190e-03, -4.9308e-03]]]])
+    return client.get_parameters(get_parameters_ins)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/numpy_client.py", line 225, in _get_parameters
+    parameters = self.numpy_client.get_parameters(config=ins.config)  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 40, in get_parameters
+    print(np.array(b.item()))
+ValueError: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3708841, ip=128.232.115.66, actor_id=797c0eb8fbc5c0a805e9e69601000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7f92f43da460>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: only one element tensors can be converted to Python scalars
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "main.py", line 63, in main
+    history = fl.simulation.start_simulation(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/app.py", line 375, in start_simulation
+    raise RuntimeError("Simulation crashed.") from ex
+RuntimeError: Simulation crashed.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+srun: error: ngongotaha: task 0: Exited with exit code 1

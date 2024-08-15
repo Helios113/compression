@@ -1,0 +1,309 @@
+[2024-08-14 18:00:16,334][flwr][INFO] - Starting Flower simulation, config: num_rounds=10, no round_timeout
+[2024-08-14 18:00:27,544][flwr][INFO] - Flower VCE: Ray initialized with resources: {'node:128.232.115.66': 1.0, 'memory': 169145531802.0, 'CPU': 56.0, 'object_store_memory': 76776656486.0, 'node:__internal_head__': 1.0, 'GPU': 1.0, 'accelerator_type:G': 1.0}
+[2024-08-14 18:00:27,545][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2024-08-14 18:00:27,545][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 2, 'num_gpus': 0.0}
+[2024-08-14 18:00:27,579][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 28 actors
+[2024-08-14 18:00:27,581][flwr][INFO] - [INIT]
+[2024-08-14 18:00:27,582][flwr][INFO] - Requesting initial parameters from one random client
+[2024-08-14 18:00:35,456][flwr][ERROR] - Traceback (most recent call last):
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3661592, ip=128.232.115.66, actor_id=caba6e6783dff9c408f49ded01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7feb605493a0>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 95, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 67, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 72, in client_fn
+    return FlowerClient(
+  File "/nfs-share/pa511/resnet/client.py", line 25, in __init__
+    self.model = instantiate(model_cfg)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 220, in instantiate
+    OmegaConf.resolve(config)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/omegaconf.py", line 785, in resolve
+    omegaconf._impl._resolve(cfg)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/_impl.py", line 40, in _resolve
+    _resolve_container_value(cfg, k)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/_impl.py", line 14, in _resolve_container_value
+    resolved = node._dereference_node()
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 246, in _dereference_node
+    node = self._dereference_node_impl(throw_on_resolution_failure=True)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 277, in _dereference_node_impl
+    return parent._resolve_interpolation_from_parse_tree(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 584, in _resolve_interpolation_from_parse_tree
+    resolved = self.resolve_parse_tree(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 764, in resolve_parse_tree
+    return visitor.visit(parse_tree)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 206, in accept
+    return visitor.visitConfigValue(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 101, in visitConfigValue
+    return self.visit(ctx.getChild(0))
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 342, in accept
+    return visitor.visitText(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 298, in visitText
+    return self.visitInterpolation(c)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 125, in visitInterpolation
+    return self.visit(ctx.getChild(0))
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 921, in accept
+    return visitor.visitInterpolationNode(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 158, in visitInterpolationNode
+    return self.node_interpolation_callback(inter_key, self.memo)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 745, in node_interpolation_callback
+    return self._resolve_node_interpolation(inter_key=inter_key, memo=memo)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 676, in _resolve_node_interpolation
+    raise InterpolationKeyError(f"Interpolation key '{inter_key}' not found")
+omegaconf.errors.InterpolationKeyError: Interpolation key 'foo' not found
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3661592, ip=128.232.115.66, actor_id=caba6e6783dff9c408f49ded01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7feb605493a0>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Interpolation key 'foo' not found
+
+[2024-08-14 18:00:35,456][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3661592, ip=128.232.115.66, actor_id=caba6e6783dff9c408f49ded01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7feb605493a0>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 95, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 67, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 72, in client_fn
+    return FlowerClient(
+  File "/nfs-share/pa511/resnet/client.py", line 25, in __init__
+    self.model = instantiate(model_cfg)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 220, in instantiate
+    OmegaConf.resolve(config)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/omegaconf.py", line 785, in resolve
+    omegaconf._impl._resolve(cfg)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/_impl.py", line 40, in _resolve
+    _resolve_container_value(cfg, k)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/_impl.py", line 14, in _resolve_container_value
+    resolved = node._dereference_node()
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 246, in _dereference_node
+    node = self._dereference_node_impl(throw_on_resolution_failure=True)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 277, in _dereference_node_impl
+    return parent._resolve_interpolation_from_parse_tree(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 584, in _resolve_interpolation_from_parse_tree
+    resolved = self.resolve_parse_tree(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 764, in resolve_parse_tree
+    return visitor.visit(parse_tree)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 206, in accept
+    return visitor.visitConfigValue(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 101, in visitConfigValue
+    return self.visit(ctx.getChild(0))
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 342, in accept
+    return visitor.visitText(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 298, in visitText
+    return self.visitInterpolation(c)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 125, in visitInterpolation
+    return self.visit(ctx.getChild(0))
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 921, in accept
+    return visitor.visitInterpolationNode(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 158, in visitInterpolationNode
+    return self.node_interpolation_callback(inter_key, self.memo)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 745, in node_interpolation_callback
+    return self._resolve_node_interpolation(inter_key=inter_key, memo=memo)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 676, in _resolve_node_interpolation
+    raise InterpolationKeyError(f"Interpolation key '{inter_key}' not found")
+omegaconf.errors.InterpolationKeyError: Interpolation key 'foo' not found
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3661592, ip=128.232.115.66, actor_id=caba6e6783dff9c408f49ded01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7feb605493a0>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Interpolation key 'foo' not found
+[2024-08-14 18:00:35,456][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=3661592, ip=128.232.115.66, actor_id=caba6e6783dff9c408f49ded01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7feb605493a0>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 95, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 67, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 72, in client_fn
+    return FlowerClient(
+  File "/nfs-share/pa511/resnet/client.py", line 25, in __init__
+    self.model = instantiate(model_cfg)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 220, in instantiate
+    OmegaConf.resolve(config)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/omegaconf.py", line 785, in resolve
+    omegaconf._impl._resolve(cfg)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/_impl.py", line 40, in _resolve
+    _resolve_container_value(cfg, k)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/_impl.py", line 14, in _resolve_container_value
+    resolved = node._dereference_node()
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 246, in _dereference_node
+    node = self._dereference_node_impl(throw_on_resolution_failure=True)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 277, in _dereference_node_impl
+    return parent._resolve_interpolation_from_parse_tree(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 584, in _resolve_interpolation_from_parse_tree
+    resolved = self.resolve_parse_tree(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 764, in resolve_parse_tree
+    return visitor.visit(parse_tree)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 206, in accept
+    return visitor.visitConfigValue(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 101, in visitConfigValue
+    return self.visit(ctx.getChild(0))
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 342, in accept
+    return visitor.visitText(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 298, in visitText
+    return self.visitInterpolation(c)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 125, in visitInterpolation
+    return self.visit(ctx.getChild(0))
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 921, in accept
+    return visitor.visitInterpolationNode(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 158, in visitInterpolationNode
+    return self.node_interpolation_callback(inter_key, self.memo)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 745, in node_interpolation_callback
+    return self._resolve_node_interpolation(inter_key=inter_key, memo=memo)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 676, in _resolve_node_interpolation
+    raise InterpolationKeyError(f"Interpolation key '{inter_key}' not found")
+omegaconf.errors.InterpolationKeyError: Interpolation key 'foo' not found
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3661592, ip=128.232.115.66, actor_id=caba6e6783dff9c408f49ded01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7feb605493a0>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Interpolation key 'foo' not found
+[2024-08-14 18:00:35,459][flwr][ERROR] - Traceback (most recent call last):
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/app.py", line 339, in start_simulation
+    hist = run_fl(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 490, in run_fl
+    hist, elapsed_time = server.fit(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 93, in fit
+    self.parameters = self._get_initial_parameters(server_round=0, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/server/server.py", line 282, in _get_initial_parameters
+    get_parameters_res = random_client.get_parameters(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 168, in get_parameters
+    message_out = self._submit_job(message, timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 108, in _submit_job
+    raise ex
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 94, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 398, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 279, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 2667, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/ray/_private/worker.py", line 864, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=3661592, ip=128.232.115.66, actor_id=caba6e6783dff9c408f49ded01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7feb605493a0>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 143, in __call__
+    return self._call(message, context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 126, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/message_handler/message_handler.py", line 95, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/client/client_app.py", line 67, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/nfs-share/pa511/resnet/client.py", line 72, in client_fn
+    return FlowerClient(
+  File "/nfs-share/pa511/resnet/client.py", line 25, in __init__
+    self.model = instantiate(model_cfg)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 220, in instantiate
+    OmegaConf.resolve(config)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/omegaconf.py", line 785, in resolve
+    omegaconf._impl._resolve(cfg)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/_impl.py", line 40, in _resolve
+    _resolve_container_value(cfg, k)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/_impl.py", line 14, in _resolve_container_value
+    resolved = node._dereference_node()
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 246, in _dereference_node
+    node = self._dereference_node_impl(throw_on_resolution_failure=True)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 277, in _dereference_node_impl
+    return parent._resolve_interpolation_from_parse_tree(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 584, in _resolve_interpolation_from_parse_tree
+    resolved = self.resolve_parse_tree(
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 764, in resolve_parse_tree
+    return visitor.visit(parse_tree)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 206, in accept
+    return visitor.visitConfigValue(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 101, in visitConfigValue
+    return self.visit(ctx.getChild(0))
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 342, in accept
+    return visitor.visitText(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 298, in visitText
+    return self.visitInterpolation(c)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 125, in visitInterpolation
+    return self.visit(ctx.getChild(0))
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/antlr4/tree/Tree.py", line 34, in visit
+    return tree.accept(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar/gen/OmegaConfGrammarParser.py", line 921, in accept
+    return visitor.visitInterpolationNode(self)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/grammar_visitor.py", line 158, in visitInterpolationNode
+    return self.node_interpolation_callback(inter_key, self.memo)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 745, in node_interpolation_callback
+    return self._resolve_node_interpolation(inter_key=inter_key, memo=memo)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/omegaconf/base.py", line 676, in _resolve_node_interpolation
+    raise InterpolationKeyError(f"Interpolation key '{inter_key}' not found")
+omegaconf.errors.InterpolationKeyError: Interpolation key 'foo' not found
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=3661592, ip=128.232.115.66, actor_id=caba6e6783dff9c408f49ded01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x7feb605493a0>)
+  File "/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 63, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: Interpolation key 'foo' not found
+
+[2024-08-14 18:00:35,460][flwr][ERROR] - Your simulation crashed :(. This could be because of several reasons. The most common are: 
+	 > Sometimes, issues in the simulation code itself can cause crashes. It's always a good idea to double-check your code for any potential bugs or inconsistencies that might be contributing to the problem. For example: 
+		 - You might be using a class attribute in your clients that hasn't been defined.
+		 - There could be an incorrect method call to a 3rd party library (e.g., PyTorch).
+		 - The return types of methods in your clients/strategies might be incorrect.
+	 > Your system couldn't fit a single VirtualClient: try lowering `client_resources`.
+	 > All the actors in your pool crashed. This could be because: 
+		 - You clients hit an out-of-memory (OOM) error and actors couldn't recover from it. Try launching your simulation with more generous `client_resources` setting (i.e. it seems {'num_cpus': 2, 'num_gpus': 0.0} is not enough for your run). Use fewer concurrent actors. 
+		 - You were running a multi-node simulation and all worker nodes disconnected. The head node might still be alive but cannot accommodate any actor with resources: {'num_cpus': 2, 'num_gpus': 0.0}.
+Take a look at the Flower simulation examples for guidance <https://flower.ai/docs/framework/how-to-run-simulations.html>.

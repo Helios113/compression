@@ -1,0 +1,11 @@
+/nfs-share/pa511/.cache/pypoetry/virtualenvs/advanced-pytorch-4G2CGpb3-py3.8/lib/python3.8/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'base': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+In 'base': Could not find 'model/resnet18'
+
+Config search path:
+	provider=hydra, path=pkg://hydra.conf
+	provider=main, path=file:///nfs-share/pa511/resnet/conf
+	provider=schema, path=structured://
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+srun: error: ngongotaha: task 0: Exited with exit code 1
